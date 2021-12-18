@@ -1,5 +1,5 @@
 // initially taken from https://github.com/nexys-admin/finy-server/blob/8279bac9a5081d4228bbdcf80526815717b500a2/src/service/googleapi/gmail/googlemail.ts
-import { Tokens } from 'cache';
+
 import fetch from 'node-fetch';
 
 import * as T from './type';
@@ -95,8 +95,8 @@ export const listEmailWithIter = async (
   queryFilter: T.GoogleEmailFilter,
   maxResults: number,
   userId: string = 'me',
-  tokens: Tokens,
-  getRefreshToken: (r: string) => Promise<Tokens>,
+  tokens: T.Tokens,
+  getRefreshToken: (r: string) => Promise<T.Tokens>,
   iter: number = 1
 ): Promise<T.Email[]> => {
   try {

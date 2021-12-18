@@ -18,8 +18,8 @@
   "author": "Nexys Sarl",
   "license": "MIT",
   "devDependencies": {
-    "@nexys/oauth": "^0.1.4",
     "@nexys/node-cache": "^0.0.1",
+    "@nexys/oauth": "^0.1.4",
     "@types/jest": "^26.0.9",
     "@types/koa": "^2.13.4",
     "@types/koa-router": "^7.4.4",
@@ -40,5 +40,7 @@
   "peerDependencies": {
     "node-fetch": "^2.6.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@nexys/googleapi": "^0.0.3"
+  }
 }

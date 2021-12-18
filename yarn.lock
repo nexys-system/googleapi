@@ -474,6 +474,11 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
+"@nexys/googleapi@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@nexys/googleapi/-/googleapi-0.0.3.tgz#c411599bbfe559f6b214657b0dd6e6a461c4eb54"
+  integrity sha512-IBNzym57s6rEWjEq70ghr7GYBXVJfHGNuf5R3al0+69PY7Q45Ml+/IK++jAodcuZkGfWvlsOvcjZp75yYEP7WQ==
+
 "@nexys/node-cache@^0.0.1":
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/@nexys/node-cache/-/node-cache-0.0.1.tgz#fdbce9ba942ac92e12740ab3deacbe0342def800"

@@ -61,3 +61,8 @@ export interface EmailAttachment {
   mimeType: string;
   content: Buffer;
 }
+
+export interface Tokens {
+  access_token: string;
+  refresh_token: string;
+}
