@@ -3,6 +3,8 @@ import Router from 'koa-router';
 import * as oauth from '@nexys/oauth';
 import * as C from '../config';
 
+import { setToken } from '../cache';
+
 const ghOauth = new oauth.Google(
   C.googleSSO.client,
   C.googleSSO.secret,
@@ -33,6 +35,8 @@ router.get('/redirect', async ctx => {
   }
   const token = await ghOauth.callback(code);
   const profile = await ghOauth.getProfile(token);
+
+  setToken(token);
 
   ctx.body = { token, profile };
 });

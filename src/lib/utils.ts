@@ -19,3 +19,8 @@ export const b64DecodeUnicode = (str: string): string => {
       .join('')
   );
 };
+
+export const paramsToString = (a: { [k: string]: any }): string =>
+  Object.entries(a)
+    .map(([k, v]) => `${k}=${encodeURIComponent(v)}`)
+    .join('&');

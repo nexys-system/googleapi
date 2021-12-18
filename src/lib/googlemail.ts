@@ -21,11 +21,6 @@ export const getEmailTitle = (g: T.GoogleEmail): string | null => {
   return null;
 };
 
-const paramsToString = (a: { [k: string]: any }): string =>
-  Object.entries(a)
-    .map(([k, v]) => `${k}=${encodeURIComponent(v)}`)
-    .join('&');
-
 // https://developers.google.com/gmail/api/v1/reference/users/messages/list
 export const filterToQuery = (filter: T.GoogleEmailFilter): string => {
   const r: string[] = [];
@@ -60,7 +55,6 @@ export const listEmail = async (
   // get token
 
   const q: string = filterToQuery(queryFilter);
-  console.log(q);
 
   const params = {
     maxResults,
@@ -68,11 +62,12 @@ export const listEmail = async (
     access_token: token
   };
 
-  const url: string = `${urlPrefix}/messages?` + paramsToString(params);
+  const url: string = `${urlPrefix}/messages?` + U.paramsToString(params);
 
   try {
     const r = await fetch(url, fetchGetOptions);
     const res: { messages: { id: string }[] } = await r.json();
+    console.log(res);
 
     if (!res.messages) {
       return [];
@@ -108,7 +103,7 @@ const listEmailWithIter = async (
       );
     }
 
-    if (err.statusCode === 401) {
+    if (err as Error) {
       console.log(
         'access token no longer valid, trying to fetch new one using refresh token'
       );
@@ -261,7 +256,7 @@ export const getAttachment = async (
 
   const url =
     `https://www.googleapis.com/gmail/v1/users/${userId}/messages/${emailId}/attachments/${attachmentId}?` +
-    paramsToString(params);
+    U.paramsToString(params);
 
   try {
     const r = await fetch(url, fetchGetOptions);
@@ -280,7 +275,7 @@ export const deleteMessage = async (
 
   const url =
     `https://www.googleapis.com/gmail/v1/users/${userId}/messages/${id}?` +
-    paramsToString(params);
+    U.paramsToString(params);
 
   try {
     const r = await fetch(url, {

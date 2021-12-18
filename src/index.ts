@@ -10,6 +10,11 @@ const router = new Router();
 router.use('/sso/google', OAuthGoogle);
 router.use('/gmail', Gmail);
 
+router.get('/', ctx => {
+  ctx.body = { message: 'hello' };
+});
+
 app.use(router.routes());
 
-app.listen(3022);
+const port = 3022;
+app.listen(port, () => console.log(`server started on port ${port}`));
