@@ -474,10 +474,10 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
-"@nexys/oauth@^0.1.2":
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/@nexys/oauth/-/oauth-0.1.2.tgz#bb4b29e9bbcc76d6d4d89cb664c174ae9eae9e79"
-  integrity sha512-bWhmjxiDvBM2v/EqouqHhB9dZa1BTv9SdrViHKCR0zgZjGP93DJxLcofESPEWKU1hACZiAqxmkENLW7Ph3X9ZA==
+"@nexys/oauth@^0.1.5":
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@nexys/oauth/-/oauth-0.1.4.tgz#be3dcfaa85e29c91fe284fa2b95beff41388ea2e"
+  integrity sha512-VvAOE3kAwo8o43e7Djc1u1dz/exxCxpn5jIJKdiikpEw+J7kqhMqPAgbri5tF1mAq5uJnZ6MITHUywl8RP2JKg==
 
 "@sinonjs/commons@^1.7.0":
   version "1.8.3"

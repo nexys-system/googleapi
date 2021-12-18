@@ -35,12 +35,13 @@ router.get('/redirect', async ctx => {
   if (typeof code !== 'string') {
     throw Error("code can't be read");
   }
-  const token = await ghOauth.callback(code);
-  const profile = await ghOauth.getProfile(token);
+  const { access_token, refresh_token } = await ghOauth.callbackComplete(code);
 
-  setToken(token);
+  const profile = await ghOauth.getProfile(access_token);
 
-  ctx.body = { token, profile };
+  setToken({ access_token, refresh_token });
+
+  ctx.body = { access_token, refresh_token, profile };
 });
 
 export default router.routes();

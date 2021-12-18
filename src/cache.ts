@@ -1,18 +1,23 @@
-import NodeCache from 'node-cache';
+import Cache from './node-cache';
 
-const cache = new NodeCache();
+const cache = new Cache({ persistent: true });
 
 const tokenKey = 'token';
 
-export const setToken = (token: string) => cache.set(tokenKey, token);
+interface Tokens {
+  access_token: string;
+  refresh_token?: string;
+}
+
+export const setToken = (tokens: Tokens) => cache.set(tokenKey, tokens);
 export const getToken = (): string => {
-  const s = cache.get<string>(tokenKey);
+  const s = cache.get<Tokens>(tokenKey);
 
   if (!s) {
     throw Error('could not fet token');
   }
 
-  return s;
+  return s.access_token;
 };
 
 export default cache;
