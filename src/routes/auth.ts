@@ -10,6 +10,8 @@ const ghOauth = new oauth.Google(
   C.googleSSO.secret,
   C.googleSSO.redirect_uri
 );
+
+// scopes for google sheets: https://developers.google.com/sheets/api/guides/authorizing
 const scopes = ['userinfo.profile', 'userinfo.email', 'gmail.readonly'].map(
   x => `https://www.googleapis.com/auth/${x}`
 );
