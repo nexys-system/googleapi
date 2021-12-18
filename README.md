@@ -1,4 +1,6 @@
-# Gmail reader
+# Google API access
+
+## Gmail reader
 
 [![Test](https://github.com/nexys-system/googleapi/actions/workflows/test.yml/badge.svg)](https://github.com/nexys-system/googleapi/actions/workflows/test.yml)
 
