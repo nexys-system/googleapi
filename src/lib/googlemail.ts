@@ -1,4 +1,5 @@
 // initially taken from https://github.com/nexys-admin/finy-server/blob/8279bac9a5081d4228bbdcf80526815717b500a2/src/service/googleapi/gmail/googlemail.ts
+import { Tokens } from 'cache';
 import fetch from 'node-fetch';
 
 import * as T from './type';
@@ -69,6 +70,10 @@ export const listEmail = async (
     const res: { messages: { id: string }[] } = await r.json();
     console.log(res);
 
+    if (r.status === 401) {
+      throw Error('unauthorized');
+    }
+
     if (!res.messages) {
       return [];
     }
@@ -86,16 +91,21 @@ export const listEmail = async (
   }
 };
 
-const listEmailWithIter = async (
+export const listEmailWithIter = async (
   queryFilter: T.GoogleEmailFilter,
   maxResults: number,
   userId: string = 'me',
-  token: string,
+  tokens: Tokens,
+  getRefreshToken: (r: string) => Promise<Tokens>,
   iter: number = 1
 ): Promise<T.Email[]> => {
-  //Promise<Email[]>
   try {
-    return await listEmail(queryFilter, maxResults, userId, token);
+    return await listEmail(
+      queryFilter,
+      maxResults,
+      userId,
+      tokens.access_token
+    );
   } catch (err) {
     if (iter > 1) {
       throw Error(
@@ -107,14 +117,15 @@ const listEmailWithIter = async (
       console.log(
         'access token no longer valid, trying to fetch new one using refresh token'
       );
-      //const refresh_token = Profile.getTokenRefresh();
-      //const r = await GoogleOAuth.getRefreshedToken(refresh_token);
 
-      return await listEmailWithIter(
+      const rTokens = await getRefreshToken(tokens.refresh_token);
+
+      return listEmailWithIter(
         queryFilter,
         maxResults,
         userId,
-        token,
+        rTokens,
+        getRefreshToken,
         iter + 1
       );
     }

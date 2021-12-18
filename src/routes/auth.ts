@@ -1,32 +1,18 @@
 import Router from 'koa-router';
 
-import * as oauth from '@nexys/oauth';
-import * as C from '../config';
+import * as OAuth from '../oauth';
 
 import { setToken } from '../cache';
-
-const ghOauth = new oauth.Google(
-  C.googleSSO.client,
-  C.googleSSO.secret,
-  C.googleSSO.redirect_uri
-);
-
-// scopes for google sheets: https://developers.google.com/sheets/api/guides/authorizing
-const scopes = ['userinfo.profile', 'userinfo.email', 'gmail.readonly'].map(
-  x => `https://www.googleapis.com/auth/${x}`
-);
-const state = undefined;
-const oauthUrl = ghOauth.oAuthUrl(state, scopes);
 
 // routes
 const router = new Router();
 
 router.get('/url', ctx => {
-  ctx.body = oauthUrl;
+  ctx.body = OAuth.url;
 });
 
 router.get('/', ctx => {
-  ctx.redirect(oauthUrl);
+  ctx.redirect(OAuth.url);
 });
 
 router.get('/redirect', async ctx => {
@@ -35,9 +21,10 @@ router.get('/redirect', async ctx => {
   if (typeof code !== 'string') {
     throw Error("code can't be read");
   }
-  const { access_token, refresh_token } = await ghOauth.callbackComplete(code);
+  const { access_token, refresh_token = 'undefined' } =
+    await OAuth.ghOauth.callbackComplete(code);
 
-  const profile = await ghOauth.getProfile(access_token);
+  const profile = await OAuth.ghOauth.getProfile(access_token);
 
   setToken({ access_token, refresh_token });
 

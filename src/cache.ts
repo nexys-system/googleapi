@@ -4,20 +4,29 @@ const cache = new Cache({ persistent: true });
 
 const tokenKey = 'token';
 
-interface Tokens {
+export interface Tokens {
   access_token: string;
-  refresh_token?: string;
+  refresh_token: string;
 }
 
 export const setToken = (tokens: Tokens) => cache.set(tokenKey, tokens);
-export const getToken = (): string => {
+
+export const getTokens = (): Tokens => {
   const s = cache.get<Tokens>(tokenKey);
 
-  if (!s) {
-    throw Error('could not fet token');
+  if (s === undefined) {
+    throw Error('could not fetch token');
   }
 
-  return s.access_token;
+  return s;
+};
+
+export const getToken = (
+  tokenAttribute: keyof Tokens = 'access_token'
+): string => {
+  const s = getTokens();
+
+  return s[tokenAttribute];
 };
 
 export default cache;
