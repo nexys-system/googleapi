@@ -3,6 +3,11 @@
   "version": "0.0.2",
   "description": "list of utilities to access google",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/*",
+    "README.md"
+  ],
   "scripts": {
     "start": "node dist/index.js",
     "watch": "tsc-watch --onSuccess \"node ./dist/index.js\"",
