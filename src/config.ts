@@ -7,3 +7,5 @@ export const googleSSO = {
   secret: process.env['GOOGLE_SSO_SECRET'] || '',
   redirect_uri: process.env['GOOGLE_SSO_REDIRECT'] || ''
 };
+
+export const googleSheetsKey = process.env['GOOGLE_SHEETS_KEY'] || '';
