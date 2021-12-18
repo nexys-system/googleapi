@@ -1,0 +1,29 @@
+name: Docker
+
+on:
+  push:
+    tags:
+      - v*
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      # set the dockerhub url env var to the current organization / repository. The name of the docker container is the name of the repository.
+      # this can be changed and shouldn't have any influences on the repo itself. The CD will mostly need to be updated 
+      - name: Set env var
+        run: echo "DOCKERHUB_URL=$(echo ghcr.io/${GITHUB_REPOSITORY,,}/${{ github.event.repository.name }})" >> $GITHUB_ENV
+      - name: see env
+        run: echo $DOCKERHUB_URL
+      - name: Login to DockerHub Registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14
+      - run: yarn
+      - run: yarn build
+      - name: create docker container
+        run: docker build --build-arg GIT_SHA=$GITHUB_SHA --build-arg GIT_VERSION=${GITHUB_REF##*/} --tag $DOCKERHUB_URL:latest --tag $DOCKERHUB_URL:master --tag $DOCKERHUB_URL:${GITHUB_REF##*/} .
+      - name: Push
+        run: docker push --all-tags $DOCKERHUB_URL

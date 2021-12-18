@@ -1,0 +1,36 @@
+{
+  "name": "@nexys-system/googleapi",
+  "version": "0.0.1",
+  "description": "list of utilities to access google",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "node dist/index.js",
+    "watch": "tsc-watch --onSuccess \"node ./dist/index.js\"",
+    "test": "jest src",
+    "build": "tsc"
+  },
+  "author": "Nexys Sarl",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^26.0.9",
+    "@types/node": "^17.0.0",
+    "@types/node-fetch": "^2.5.12",
+    "@types/supertest": "^2.0.10",
+    "jest": "^26.2.2",
+    "supertest": "^6.1.3",
+    "ts-jest": "^26.1.4",
+    "tsc-watch": "^4.2.9",
+    "typescript": "^3.9.3",
+    "@nexys/oauth": "^0.1.2",
+    "@types/koa": "^2.13.4",
+    "@types/koa-router": "^7.4.4",
+    "dotenv": "^10.0.0",
+    "koa": "^2.13.4",
+    "koa-router": "^10.1.1",
+    "node-fetch": "^2.6.1"
+  },
+  "peerDependencies": {
+    "node-fetch": "^2.6.1"
+  },
+  "dependencies": {}
+}
