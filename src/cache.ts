@@ -1,4 +1,4 @@
-import Cache from './node-cache';
+import Cache from '@nexys/node-cache';
 
 const cache = new Cache({ persistent: true });
 

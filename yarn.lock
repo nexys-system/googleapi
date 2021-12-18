@@ -474,7 +474,14 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
-"@nexys/oauth@^0.1.5":
+"@nexys/node-cache@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@nexys/node-cache/-/node-cache-0.0.1.tgz#fdbce9ba942ac92e12740ab3deacbe0342def800"
+  integrity sha512-2KRtluOryOOLU8JlOEwJpgYxx3YMjiefLNCy8tBZNVaUkJ6MzGPN7YaKJPYTdsR4EigXJHoNx+qiP8l4XgRKrA==
+  dependencies:
+    node-cache "^5.1.2"
+
+"@nexys/oauth@^0.1.4":
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/@nexys/oauth/-/oauth-0.1.4.tgz#be3dcfaa85e29c91fe284fa2b95beff41388ea2e"
   integrity sha512-VvAOE3kAwo8o43e7Djc1u1dz/exxCxpn5jIJKdiikpEw+J7kqhMqPAgbri5tF1mAq5uJnZ6MITHUywl8RP2JKg==
