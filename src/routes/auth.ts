@@ -1,7 +1,6 @@
 import Router from 'koa-router';
 
 import * as OAuth from '../oauth';
-
 import { setToken } from '../cache';
 
 // routes

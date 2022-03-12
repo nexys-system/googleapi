@@ -1,9 +1,6 @@
 // initially taken from https://github.com/nexys-admin/finy-server/blob/8279bac9a5081d4228bbdcf80526815717b500a2/src/service/googleapi/gmail/googlemail.ts
 
-import fetch from 'node-fetch';
-
 import * as T from './type';
-
 import * as U from './utils';
 
 const urlPrefix = 'https://www.googleapis.com/gmail/v1/users/me';

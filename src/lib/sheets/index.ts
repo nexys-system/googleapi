@@ -1,4 +1,4 @@
-import fetch from 'node-fetch';
+//import fetch from '../fetch2';
 
 import { paramsToString } from '../utils';
 
