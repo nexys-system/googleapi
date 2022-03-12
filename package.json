@@ -41,6 +41,5 @@
     "node-fetch": "^2.6.1"
   },
   "dependencies": {
-    "@nexys/googleapi": "^0.0.3"
   }
 }
