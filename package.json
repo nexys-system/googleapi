@@ -1,6 +1,6 @@
 {
   "name": "@nexys/googleapi",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "list of utilities to access google",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -39,7 +39,5 @@
   },
   "peerDependencies": {
     "node-fetch": "^2.6.1"
-  },
-  "dependencies": {
   }
 }
