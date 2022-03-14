@@ -1,3 +1,5 @@
+import * as T from './type';
+
 export const decode = (str: string): string =>
   Buffer.from(str, 'base64').toString('binary');
 export const encode = (str: string): string =>
@@ -24,3 +26,21 @@ export const paramsToString = (a: { [k: string]: any }): string =>
   Object.entries(a)
     .map(([k, v]) => `${k}=${encodeURIComponent(v)}`)
     .join('&');
+
+export const getFrom = (payload: T.GoogleEmailPart): T.From => {
+  const f = payload.headers.find(({ name }) => name === 'From');
+
+  if (!f) {
+    return { email: '' };
+  }
+
+  const { value } = f;
+
+  const r = value.match(/^(.+) <([^>]+)>$/);
+
+  if (r && r.length > 2) {
+    return { name: r[1], email: r[2] };
+  }
+
+  return { email: '' };
+};

@@ -49,6 +49,7 @@ export interface GoogleEmail {
 
 export interface Email {
   emailId: string;
+  from: From;
   title: string | null;
   html: string;
   date: Date;
@@ -60,6 +61,11 @@ export interface EmailAttachment {
   size: number;
   mimeType: string;
   content: Buffer;
+}
+
+export interface From {
+  name?: string;
+  email: string;
 }
 
 export interface Tokens {

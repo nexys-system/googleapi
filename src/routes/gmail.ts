@@ -14,7 +14,7 @@ router.get('/', async ctx => {
     getTokens(),
     OAuth.getRefreshedToken
   );
-  ctx.body = l.map(x => x.title);
+  ctx.body = l.map(x => ({ title: x.title, from: x.from }));
 });
 
 export default router.routes();

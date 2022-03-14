@@ -3,6 +3,8 @@
 import * as T from './type';
 import * as U from './utils';
 
+//import fetch from '../fetch2';
+
 const urlPrefix = 'https://www.googleapis.com/gmail/v1/users/me';
 
 const fetchGetOptions = {
@@ -182,7 +184,6 @@ export const formatEmail = async (
   token: string
 ): Promise<T.Email> => {
   const parts: T.GoogleEmailPart[] | undefined = g.payload.parts;
-  //console.log(parts)
 
   const d: string = getContent(g.payload);
 
@@ -191,11 +192,13 @@ export const formatEmail = async (
 
   const title: string | null = getEmailTitle(g);
 
+  const from = U.getFrom(g.payload);
+
   const attachments: T.EmailAttachment[] = parts
     ? await partsToAttachments(emailId, parts, userId, token)
     : [];
 
-  return { emailId, title, html, date, attachments };
+  return { emailId, title, html, date, attachments, from };
 };
 
 // await ScalaApp.upload(apiToken, fileContent, filename, mimeType);
