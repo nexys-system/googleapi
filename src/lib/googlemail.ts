@@ -235,7 +235,7 @@ const getAttachmentWithFormat = async (
 ): Promise<T.EmailAttachment | undefined> => {
   const { mimeType, filename, body } = part;
 
-  if (mimeType === 'application/pdf' && body) {
+  if (body) { // any mime type. previsouly: `mimeType === 'application/pdf' &&`
     const { attachmentId, size } = body;
 
     if (attachmentId && size > 0) {
